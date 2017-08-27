@@ -26,14 +26,16 @@ include( 'includes/init.php' );
 include( 'includes/admin/init.php' );
 include( 'process/save-post.php' );
 include( 'process/filter-content.php' );
+include( 'includes/front/enqueue.php' );
 
 // Hooks
 register_activation_hook( __FILE__ , 'tlgr_activate_plugin' ); // Fn will be called when plugin is activated
 
 add_action( 'init', 'tlgr_recipe_init' );
 add_action( 'admin_init', 'tlgr_recipe_admin_init' );
-add_action( 'save_post_recipe', 'tlgr_save_post_admin', 10, 3 );
+add_action( 'save_post_recipe', 'tlgr_save_post_admin', 10, 3 ); // default value is 10 which means the priority is high
 add_filter( 'the_content', 'tlgr_filter_recipe_content' );
+add_action( 'wp_enqueue_scripts', 'tlgr_front_enqueue', 9999 ); // change the priority from default value of 10 to 9999 to make sure that first theme loads and then plugin files
 
 // Shortcodes
 

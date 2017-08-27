@@ -34,3 +34,6 @@ if( ! function_exists( 'add_action' ) ) {
 5. Load Translations
 6. Load Theme
 7. Load Page content
+
+## jQuery Rating Plugin
+https://github.com/gjunge/rateit.js
