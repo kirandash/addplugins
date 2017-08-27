@@ -24,3 +24,13 @@ OR
 if( ! function_exists( 'add_action' ) ) {
 	exit;
 }
+
+## WordPress Load Order
+
+1. Configuration file is loaded wp-config.php
+2. Functions and classes are loaded
+3. Plugins are loaded
+4. Process all codes & repeats
+5. Load Translations
+6. Load Theme
+7. Load Page content
