@@ -13,6 +13,10 @@ Domain Path: /languages
 */
 
 // Setup
+if( !function_exists( 'add_action' ) ) {
+	echo 'Not allowed';
+	exit();	
+}
 
 // Includes
 include( 'includes/activate.php' );
