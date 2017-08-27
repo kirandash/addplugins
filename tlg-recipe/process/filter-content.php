@@ -15,6 +15,13 @@ function tlgr_filter_recipe_content( $content ) {
 	$recipe_html = str_replace("LEVEL_PH", $recipe_data['level'], $recipe_html);
 	$recipe_html = str_replace("TYPE_PH", $recipe_data['meal_type'], $recipe_html);
 
+	$recipe_html = str_replace("INGREDIENTS_I18N", __('Ingredients', 'tlg-recipe'), $recipe_html);
+	$recipe_html = str_replace("COOKING_TIME_I18N", __('Cooking Time', 'tlg-recipe'), $recipe_html);
+	$recipe_html = str_replace("UTENSILS_I18N", __('Utensils', 'tlg-recipe'), $recipe_html);
+	$recipe_html = str_replace("LEVEL_I18N", __('Level', 'tlg-recipe'), $recipe_html);
+	$recipe_html = str_replace("TYPE_I18N", __('Type', 'tlg-recipe'), $recipe_html);
+	$recipe_html = str_replace("RATE_I18N", __('Rate', 'tlg-recipe'), $recipe_html);
+
 	return $recipe_html . $content;
 }
 ?>
