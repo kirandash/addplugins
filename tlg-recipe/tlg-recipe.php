@@ -21,11 +21,13 @@ if( !function_exists( 'add_action' ) ) {
 // Includes
 include( 'includes/activate.php' );
 include( 'includes/init.php' );
+include( 'includes/admin/init.php' );
 
 // Hooks
 register_activation_hook( __FILE__ , 'tlgr_activate_plugin' ); // Fn will be called when plugin is activated
 
 add_action( 'init', 'tlgr_recipe_init' );
+add_action( 'admin_init', 'tlgr_recipe_admin_init' );
 
 // Shortcodes
 
