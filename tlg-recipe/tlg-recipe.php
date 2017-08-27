@@ -18,6 +18,8 @@ if( !function_exists( 'add_action' ) ) {
 	exit();	
 }
 
+define( 'RECIPE_PLUGIN_URL', __FILE__ ); // define path of plugin folder instead of dirname(__FILE__)
+
 // Includes
 include( 'includes/activate.php' );
 include( 'includes/init.php' );
