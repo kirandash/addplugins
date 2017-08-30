@@ -37,3 +37,6 @@ if( ! function_exists( 'add_action' ) ) {
 
 ## jQuery Rating Plugin
 https://github.com/gjunge/rateit.js
+
+## AJAX in Plugins
+https://codex.wordpress.org/AJAX_in_Plugins
