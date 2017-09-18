@@ -12,7 +12,8 @@ function tlgr_activate_plugin() {
 		  `id` bigint(20) NOT NULL,
 		  `recipe_id` bigint(20) NOT NULL,
 		  `rating` float NOT NULL,
-		  `user_ip` varchar(32) NOT NULL
+		  `user_ip` varchar(32) NOT NULL,
+		  PRIMARY KEY  (id)
 		) ENGINE=InnoDB ". $wpdb->get_charset_collate() .";
 		";
 

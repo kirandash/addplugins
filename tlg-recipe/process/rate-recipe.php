@@ -15,6 +15,7 @@ function tlgr_rate_recipe() {
 		wp_send_json($response);
 	} // Insert rating only once
 
+	// Insert Rating
 	$wpdb->insert(
 		$wpdb->prefix . 'recipe_ratings', // table name
 		array(
@@ -26,6 +27,14 @@ function tlgr_rate_recipe() {
 			'%d', '%f', '%s'
 		)  // formats ( %s string, %d integer, %f float )
 	);
+
+	// Grab meta data
+	$recipe_data	= get_post_meta( $post_id, 'recipe_data', true );
+	$recipe_data['rating_count']++;
+	$recipe_data['rating']	= round($wpdb->get_var("SELECT AVG(`rating`) FROM `" . $wpdb->prefix . "recipe_ratings` WHERE recipe_id='". $post_id ."'"), 1);
+
+	// Update meta data
+	update_post_meta( $post_id, 'recipe_data', $recipe_data );
 
 	$response['status']		= 2; // success status 
 	// echo $response['status'];
