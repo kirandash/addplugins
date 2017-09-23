@@ -28,6 +28,8 @@ include( 'process/save-post.php' );
 include( 'process/filter-content.php' );
 include( 'includes/front/enqueue.php' );
 include( 'process/rate-recipe.php' );
+include( dirname(RECIPE_PLUGIN_URL) . '/includes/widgets.php' );
+include( dirname(RECIPE_PLUGIN_URL) . '/includes/widgets/daily-recipe.php' );
 
 // Hooks
 register_activation_hook( __FILE__ , 'tlgr_activate_plugin' ); // Fn will be called when plugin is activated
@@ -39,6 +41,8 @@ add_filter( 'the_content', 'tlgr_filter_recipe_content' );
 add_action( 'wp_enqueue_scripts', 'tlgr_front_enqueue', 9999 ); // change the priority from default value of 10 to 9999 to make sure that first theme loads and then plugin files
 add_action( 'wp_ajax_tlgr_rate_recipe', 'tlgr_rate_recipe' ); // https://codex.wordpress.org/Plugin_API/Action_Reference/wp_ajax_(action)
 add_action( 'wp_ajax_nopriv_tlgr_rate_recipe', 'tlgr_rate_recipe' ); // nopriv will accept request also from guest users and not just logged in users
+// add widget
+add_action( 'widgets_init', 'tlgr_widgets_init' );
 
 // Shortcodes
 
