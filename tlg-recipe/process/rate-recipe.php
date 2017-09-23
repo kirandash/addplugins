@@ -36,6 +36,14 @@ function tlgr_rate_recipe() {
 	// Update meta data
 	update_post_meta( $post_id, 'recipe_data', $recipe_data );
 
+	// https://codex.wordpress.org/Plugin_API
+	// https://developer.wordpress.org/reference/functions/do_action/
+	do_action( 'recipe_rating', array(
+		'id'		=> $post_id,
+		'rating'	=> $rating,
+		'ip'		=> $user_ip
+	)); // Now any one can use add_action fn to hook into this hook
+
 	$response['status']		= 2; // success status 
 	// echo $response['status'];
 
