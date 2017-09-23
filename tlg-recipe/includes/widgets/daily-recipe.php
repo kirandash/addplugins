@@ -7,7 +7,19 @@ class TLGR_Daily_Recipe_Widget extends WP_Widget{
 
 	function widget( $args, $instance ) {
 		// Widget output 
-		echo 'Recipe of the day!';
+		// echo 'Recipe of the day!';
+		extract( $args ); // use extract fn to convert array into single variables
+		extract( $instance );
+
+		$title = apply_filters( 'widget_title', $title );
+		echo $before_widget;
+		echo $before_title . $title . $after_title;
+
+		$recipe_id 	= get_transient( 'tlgr_daily_recipe' ); // the transient will take effect only after deactivating and reactivating the plugin
+		?>
+		<a href="<?php echo get_permalink( $recipe_id ); ?>"><?php echo get_the_title( $recipe_id ); ?></a>
+		<?php
+		echo $after_widget;
 	}
 
 	function update( $new_instance, $old_instance ) {
