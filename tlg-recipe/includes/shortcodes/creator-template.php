@@ -6,7 +6,7 @@
 	</div>
 	<div class="form-group">
 		<label for="">Content</label>
-		<textarea class="form-control" id="recipecontenteditor"></textarea>
+		CONTENT_EDITOR
 	</div>
 	<div class="form-group">
 		<label for="">Ingredients</label>
