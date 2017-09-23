@@ -22,6 +22,7 @@ define( 'RECIPE_PLUGIN_URL', __FILE__ ); // define path of plugin folder instead
 
 // Includes
 include( 'includes/activate.php' );
+include( 'includes/deactivate.php' );
 include( 'includes/init.php' );
 include( 'includes/admin/init.php' );
 include( 'process/save-post.php' );
@@ -30,9 +31,11 @@ include( 'includes/front/enqueue.php' );
 include( 'process/rate-recipe.php' );
 include( dirname(RECIPE_PLUGIN_URL) . '/includes/widgets.php' );
 include( dirname(RECIPE_PLUGIN_URL) . '/includes/widgets/daily-recipe.php' );
+include( 'includes/cron.php' );
 
 // Hooks
 register_activation_hook( __FILE__ , 'tlgr_activate_plugin' ); // Fn will be called when plugin is activated
+register_deactivation_hook( __FILE__ , 'tlgr_deactivate_plugin' ); // Fn will be called when plugin is activated
 
 add_action( 'init', 'tlgr_recipe_init' );
 add_action( 'admin_init', 'tlgr_recipe_admin_init' );
@@ -43,6 +46,7 @@ add_action( 'wp_ajax_tlgr_rate_recipe', 'tlgr_rate_recipe' ); // https://codex.w
 add_action( 'wp_ajax_nopriv_tlgr_rate_recipe', 'tlgr_rate_recipe' ); // nopriv will accept request also from guest users and not just logged in users
 // add widget
 add_action( 'widgets_init', 'tlgr_widgets_init' );
+add_action( 'tlgr_daily_recipe_hook', 'tlgr_generate_daily_recipe' );
 
 // Shortcodes
 

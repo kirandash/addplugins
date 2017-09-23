@@ -20,5 +20,10 @@ function tlgr_activate_plugin() {
 	require( ABSPATH . '/wp-admin/includes/upgrade.php' ); // to include dbDelta fn which allows us to modify the wp database
 	dbDelta( $createSQL );
 	// use exit(); at end of dbDelta fn in /wp-admin/includes/upgrade.php for debugging
+
+	// WP Cron Jobs
+	wp_schedule_event( time(), 'daily', 'tlgr_daily_recipe_hook' ); // startng time, run each time, hook
+	// wp_schedule_event(time(), 'hourly', 'my_schedule_hook', $args);
+	// https://codex.wordpress.org/Function_Reference/wp_schedule_event
 }
 ?>
