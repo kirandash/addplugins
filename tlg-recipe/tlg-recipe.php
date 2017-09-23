@@ -32,6 +32,7 @@ include( 'process/rate-recipe.php' );
 include( dirname(RECIPE_PLUGIN_URL) . '/includes/widgets.php' );
 include( dirname(RECIPE_PLUGIN_URL) . '/includes/widgets/daily-recipe.php' );
 include( 'includes/cron.php' );
+include( 'includes/shortcodes/creator.php' );
 
 // Hooks
 register_activation_hook( __FILE__ , 'tlgr_activate_plugin' ); // Fn will be called when plugin is activated
@@ -49,5 +50,6 @@ add_action( 'widgets_init', 'tlgr_widgets_init' );
 add_action( 'tlgr_daily_recipe_hook', 'tlgr_generate_daily_recipe' );
 
 // Shortcodes
-
+add_shortcode( 'recipe_creator', 'tlgr_recipe_creator_shortcode' );
+// https://codex.wordpress.org/Function_Reference/add_shortcode
 ?>
