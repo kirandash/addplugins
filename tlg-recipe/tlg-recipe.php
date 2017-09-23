@@ -33,6 +33,7 @@ include( dirname(RECIPE_PLUGIN_URL) . '/includes/widgets.php' );
 include( dirname(RECIPE_PLUGIN_URL) . '/includes/widgets/daily-recipe.php' );
 include( 'includes/cron.php' );
 include( 'includes/shortcodes/creator.php' );
+include( 'process/submit-user-recipe.php' );
 
 // Hooks
 register_activation_hook( __FILE__ , 'tlgr_activate_plugin' ); // Fn will be called when plugin is activated
@@ -48,6 +49,8 @@ add_action( 'wp_ajax_nopriv_tlgr_rate_recipe', 'tlgr_rate_recipe' ); // nopriv w
 // add widget
 add_action( 'widgets_init', 'tlgr_widgets_init' );
 add_action( 'tlgr_daily_recipe_hook', 'tlgr_generate_daily_recipe' );
+add_action( 'wp_ajax_tlgr_submit_user_recipe', 'tlgr_submit_user_recipe' );
+add_action( 'wp_ajax_nopriv_tlgr_submit_user_recipe', 'tlgr_submit_user_recipe' ); // nopriv will accept request also from guest users and not just logged in users
 
 // Shortcodes
 add_shortcode( 'recipe_creator', 'tlgr_recipe_creator_shortcode' );

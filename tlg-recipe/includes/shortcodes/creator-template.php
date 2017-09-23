@@ -1,5 +1,5 @@
 <div id="recipeStatus"></div>
-<form action="" id="recipeForm">
+<form id="recipeForm">
 	<div class="form-group">
 		<label for="">Title</label>
 		<input type="text" class="form-control" id="tlgr_inputTitle">
