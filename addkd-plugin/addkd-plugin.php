@@ -40,19 +40,38 @@ class AddkdPlugin
 	function method2(){
 
 	}*/
+
+	function __construct() { 
+		add_action( 'init', array( $this, 'custom_post_type' ) ); // $this refers to the current class
+	}
+
 	function activate(){ // No need for unique names since this method is not publicly accessible
+		// Although the cpt fn will be called with init but still to avoid any accidental failure lets call this fn on plugin activation
+		// custom_post_type();  // can't be called like this since it is OOP
+		$this->custom_post_type();
 		// echo 'The plugin was activated successfully'; // This will create header already sent error
 		// generate a CPT
 		// flush rewrite rules
+		flush_rewrite_rules(); // all archives, posts etc related to our new cpt will automatically work // global fn
 	}
-	function deactivate(){
+
+	function deactivate(){	
 		// echo 'The plugin was deactivated successfully'; 
 		// flush rewrite rules
+		flush_rewrite_rules();
+		// cpt data is still there even if plugin is deactivated, if plugin is deleted then all data should be removed.
 	}
+
 	function uninstall(){
 		// delete CPT
 		// delete all the plugin data from the DB
 	}
+
+	function custom_post_type(){
+		register_post_type( 'book', ['public' => true, 'label' => 'Books'] );
+	}
+
+	// add_action( 'init', 'custom_post_type' ); // This can't be done with class in OOP, since it is procedural code, it must be done with constructor
 }
 
 if( class_exists( 'AddkdPlugin' ) ) { // Security checkup to see if a class exists
@@ -73,5 +92,6 @@ register_activation_hook( __FILE__ , array($addkdPlugin, 'activate')); // instea
 register_deactivation_hook( __FILE__ , array($addkdPlugin, 'deactivate')); 
 
 // On uninstall
+// register_uninstall_hook( __FILE__ , array($addkdPlugin, 'uninstall'));  // with OOP the fn must be declared static
 
 ?>
