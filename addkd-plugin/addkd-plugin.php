@@ -45,6 +45,10 @@ class AddkdPlugin
 		add_action( 'init', array( $this, 'custom_post_type' ) ); // $this refers to the current class
 	}
 
+	function register(){
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
+	}
+
 	function activate(){ // No need for unique names since this method is not publicly accessible
 		// Although the cpt fn will be called with init but still to avoid any accidental failure lets call this fn on plugin activation
 		// custom_post_type();  // can't be called like this since it is OOP
@@ -72,11 +76,18 @@ class AddkdPlugin
 	}
 
 	// add_action( 'init', 'custom_post_type' ); // This can't be done with class in OOP, since it is procedural code, it must be done with constructor
+
+	function enqueue() {
+		// enqueue all our scripts
+		wp_enqueue_style( 'mypluginstyle', plugins_url( '/assets/mystyle.css', __FILE__ ));
+		wp_enqueue_script( 'mypluginscript', plugins_url( '/assets/myscript.js', __FILE__ ));
+	}
 }
 
 if( class_exists( 'AddkdPlugin' ) ) { // Security checkup to see if a class exists
 	// $addkdPlugin = new AddkdPlugin( 'Addkd Plugins initialized!' ); // Store the initialization in a variable to use its instance in different places
 	$addkdPlugin = new AddkdPlugin(  );
+	$addkdPlugin->register(); // Calling the register function after class is initialized
 }
 
 /*function customFunction($arg) {
